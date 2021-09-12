@@ -6,7 +6,7 @@ import { getConfig } from "../config";
 import Loading from "../components/Loading";
 
 export const ExternalApiComponent = () => {
-  const { apiOrigin = "http://localhost:3001", audience } = getConfig();
+  const { apiOrigin = "http://localhost:63162", audience } = getConfig();
 
   const [state, setState] = useState({
     showResult: false,
@@ -58,7 +58,7 @@ export const ExternalApiComponent = () => {
     try {
       const token = await getAccessTokenSilently();
 
-      const response = await fetch(`${apiOrigin}/api/external`, {
+      const response = await fetch(`${apiOrigin}/api/values`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -186,7 +186,7 @@ export const ExternalApiComponent = () => {
           <div className="result-block" data-testid="api-result">
             <h6 className="muted">Result</h6>
             <Highlight>
-              <span>{JSON.stringify(state.apiMessage, null, 2)}</span>
+              <span>{JSON.stringify(state.apiMessage, null, 3)}</span>
             </Highlight>
           </div>
         )}
